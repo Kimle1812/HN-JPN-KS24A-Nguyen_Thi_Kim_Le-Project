@@ -33,11 +33,11 @@
                             </li>
                             <li>
                                 <img src="./assets/icons/Icon (1).png" alt="No Icon">
-                                <b>Starred Boards</b>
+                                <b onclick="displayStarredBoards(users)">Starred Boards</b>
                             </li>
                             <li>
                                 <img src="./assets/icons/Icon (2).png" alt="No Icon">
-                                <b>Closed Boards</b>
+                                <b onclick="displayClosedBoards(users)">Closed Boards</b>
                             </li>
                             <hr>
                             <li>
@@ -89,22 +89,43 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="one-left">
-                            <img src="./assets/icons/Icon (5).png" alt="No Icon">
-                            <h1>Starred Boasds</h1>
+                        <div id="starredBoards" style="display: none;">
+                            <div class="one-left">
+                                <img src="./assets/icons/Icon (5).png" alt="No Icon">
+                                <h1>Starred Boards</h1>
+                            </div>
+                            <hr>
+                            <div class="right-two">
+                                <ul class="starredBoards">
+                                    <!-- <li>
+                                        <img src="https://animestore.vn/wp-content/uploads/2022/10/hinh-nen-phong-canh-anime-dep_041752715.jpg" alt="" width="270px" height="130px" class="image">
+                                        <div><p class="text-image">Important Board 01</p></div>
+                                    </li>
+                                    <li>
+                                        <img src="https://animestore.vn/wp-content/uploads/2022/10/hinh-nen-phong-canh-anime-dep_041752715.jpg" alt="" width="270px" height="130px" class="image">
+                                        <div><p class="text-image">Important Board 02</p></div>
+                                    </li> -->
+                                </ul>
+                            </div>
                         </div>
-                        <hr>
-                        <div class="right-two">
-                            <ul class="starredBoards">
-                                <!-- <li>
-                                    <img src="https://animestore.vn/wp-content/uploads/2022/10/hinh-nen-phong-canh-anime-dep_041752715.jpg" alt="" width="270px" height="130px" class="image">
-                                    <div><p class="text-image">Important Board 01</p></div>
-                                </li>
-                                <li>
-                                    <img src="https://animestore.vn/wp-content/uploads/2022/10/hinh-nen-phong-canh-anime-dep_041752715.jpg" alt="" width="270px" height="130px" class="image">
-                                    <div><p class="text-image">Important Board 02</p></div>
-                                </li> -->
-                            </ul>
+                        <div id="closedBoards" style="display: none;">
+                            <div class="one-left">
+                                <img src="./assets/icons/Icon (2).png" alt="No Icon" width="32px" height="32px">    
+                                <h1>Closed Boards</h1>
+                            </div>
+                            <hr>
+                            <div class="right-two">
+                                <ul class="closedBoards">
+                                    <!-- <li>
+                                        <img src="https://animestore.vn/wp-content/uploads/2022/10/hinh-nen-phong-canh-anime-dep_041752715.jpg" alt="" width="270px" height="130px" class="image">
+                                        <div><p class="text-image">Important Board 01</p></div>
+                                    </li>
+                                    <li>
+                                        <img src="https://animestore.vn/wp-content/uploads/2022/10/hinh-nen-phong-canh-anime-dep_041752715.jpg" alt="" width="270px" height="130px" class="image">
+                                        <div><p class="text-image">Important Board 02</p></div>
+                                    </li> -->
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>

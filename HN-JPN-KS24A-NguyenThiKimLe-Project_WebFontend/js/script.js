@@ -80,26 +80,55 @@
     displayWorkspaceBoards(users);
 // Hàm hiển thị Starred Boards
 function displayStarredBoards(users) {
-    let boardList = document.getElementsByClassName('starredBoards')[0];
-    boardList.innerHTML = ''; // Xóa nội dung cũ
-    for (let userIndex = 0; userIndex < users.length; userIndex++) {
-        let user = users[userIndex];
-        if (user.boards && user.boards.length > 0) {
-            for (let boardIndex = 0; boardIndex < user.boards.length; boardIndex++) {
-                let board = user.boards[boardIndex];
-                if (board._is_starred == true) { // Kiểm tra nếu board được gắn sao
-                    boardList.innerHTML += `
-                        <li>
-                            <img src="${board.backdrop}" alt="No Image" width="270px" height="130px" class="image">
-                            <div><p class="text-image">${board.title}</p></div>
-                        </li>
-                    `;
+    if(document.getElementById("starredBoards").style.display == "none"){
+        document.getElementById("starredBoards").style.display = "block";
+        let boardList = document.getElementsByClassName('starredBoards')[0];
+        boardList.innerHTML = ''; // Xóa nội dung cũ
+        for (let userIndex = 0; userIndex < users.length; userIndex++) {
+            let user = users[userIndex];
+            if (user.boards && user.boards.length > 0) {
+                for (let boardIndex = 0; boardIndex < user.boards.length; boardIndex++) {
+                    let board = user.boards[boardIndex];
+                    if (board._is_starred == true) { // Kiểm tra nếu board được gắn sao
+                        boardList.innerHTML += `
+                            <li>
+                                <img src="${board.backdrop}" alt="No Image" width="270px" height="130px" class="image">
+                                <div><p class="text-image">${board.title}</p></div>
+                            </li>
+                        `;
+                    }
                 }
             }
         }
+    } else{
+        document.getElementById("starredBoards").style.display = "none";
     }
 }
-    displayStarredBoards(users);
+function displayClosedBoards(users) {
+    if(document.getElementById("closedBoards").style.display == "none"){
+        document.getElementById("closedBoards").style.display = "block";
+        let boardList = document.getElementsByClassName('closedBoards')[0];
+        boardList.innerHTML = ''; // Xóa nội dung cũ
+        for (let userIndex = 0; userIndex < users.length; userIndex++) {
+            let user = users[userIndex];
+            if (user.boards && user.boards.length > 0) {
+                for (let boardIndex = 0; boardIndex < user.boards.length; boardIndex++) {
+                    let board = user.boards[boardIndex];
+                    if (board._is_closed == false) {
+                        boardList.innerHTML += `
+                            <li>
+                                <img src="${board.backdrop}" alt="No Image" width="270px" height="130px" class="image">
+                                <div><p class="text-image">${board.title}</p></div>
+                            </li>
+                        `;
+                    }
+                }
+            }
+        }
+    } else{
+        document.getElementById("closedBoards").style.display = "none";
+    }
+}
 //Hàm thêm mới Board
 function addNewBoard(users, currentUser){
     let boardTitle = document.getElementsByClassName("createTitle-input")[0].value;
@@ -113,6 +142,7 @@ function addNewBoard(users, currentUser){
         description: "dự án",
         backdrop: "https://s3-alpha-sig.figma.com/img/0caf/31db/519b1e2549c3ed1cdce2d2279cf5ac0b?Expires=1745193600&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=oryXOXJpHqJ~pspJ6bU49tVw7lx3HylkVnbH3jFAlFyHhqiuXuzGJjfSHAtNFQ6Xza7cv54Dcp~FoSivFxRYPxV1srYiATPv~8Mm20YiOFsLqV2JzLoeR8lTBMA4PQvEUFfpdsR60i1JVmLJz1trcKizojOLgvuaqU685z2thPJHfPXtkiGXxvpsGZl7U7nzVIix9IR1P0jw4yd-TJnqN4ivTNsJbAgLtjqsyRgsKo91saSwYi4hyxSfcKKRarQ0oz7DoaSuo6AGJz6~ghXQYMfHmh752eg351n3yK9ItWS7BS0ddDfibaa~3Xw2d6Aba5rkEuztD6rn-Vfe4XxGvg__",
         _is_starred: true,
+        _is_closed: true,
         created_at: new Date().toISOString(),
         lists: []
     };
@@ -139,22 +169,10 @@ function editBoard(users) {
     }
 
     // Cập nhật thông tin Board
-    console.log(users);
-    let indexUser = users.findIndex((e) => e.id == currentUser.id);
-    let boardId = localStorage.getItem("currentBoardId");
-    let indexBoard = users[indexUser].boards.findIndex((e) => e.id == boardId);
-    console.log(indexBoard);
-   
-    users[indexUser].boards[indexBoard].title = newTitle;
-
-
-    // Lưu lại vào Local Storage
-    localStorage.setItem("users", JSON.stringify(users));
+    
 
     displayWorkspaceBoards(users);
     displayStarredBoards(users);
-
-    alert("Sửa Board thành công!");
     hide();
 }
 //Hàm xóa Board

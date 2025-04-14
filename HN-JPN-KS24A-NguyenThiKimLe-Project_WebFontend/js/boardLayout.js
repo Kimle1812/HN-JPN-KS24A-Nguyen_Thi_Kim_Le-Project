@@ -270,6 +270,19 @@ function editTask(users){
     displayTask(users);
     hide();
 }
+//Hàm đóng boards
+function closedBoards(users){
+    let indexUser = users.findIndex((e) => e.id == currentUser.id);
+    let boardId = localStorage.getItem("currentBoardId");
+    let indexBoard = users[indexUser].boards.findIndex((e) => e.id == boardId);
+   
+    users[indexUser].boards[indexBoard]._is_closed = false;
+    currentUser.boards[indexBoard]._is_closed = false;
+    // Lưu lại vào Local Storage
+    localStorage.setItem("users", JSON.stringify(users));
+    localStorage.setItem("currentUser", JSON.stringify(currentUser));
+    window.location.href = "http://127.0.0.1:5500/dashboardLayout.html";
+}
 // JS phần chuyển đổi giữa các trang
 function showFilter(){
     document.getElementsByClassName("filterDropdown")[0].style.display = "flex";
